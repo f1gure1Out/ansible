@@ -136,7 +136,7 @@ services:
       - /mnt/storage_damaged/movies:/movies
       - /mnt/disk2/downloads/complete/movies:/downloads
     ports:
-      - 7878:7878
+      - 27027:7878
     environment:
       - PUID=${PUID}
       - PGID=${PGID}
@@ -164,7 +164,7 @@ services:
     image: linuxserver/airsonic
     container_name: airsonic
     ports:
-      - 4040:4040
+      - 27028:4040
     volumes:
       - /opt/appdata/airsonic:/config
       - /mnt/storage_damaged/music/flac:/music/flac
