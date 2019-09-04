@@ -90,8 +90,6 @@ services:
     environment:
       - PUID=${PUID}
       - PGID=${PGID}
-      - TZ=Asia/India
-      - UMASK_SET=022
       - WEBUI_PORT=8080
     volumes:
       - /opt/appdata/qbittorrent:/config
