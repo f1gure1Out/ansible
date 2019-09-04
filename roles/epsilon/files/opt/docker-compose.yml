@@ -84,6 +84,23 @@ services:
     environment:
       - PUID=${PUID}
       - PGID=${PGID}
+  qbittorrent:
+    image: linuxserver/qbittorrent
+    container_name: qbittorrent
+    environment:
+      - PUID=${PUID}
+      - PGID=${PGID}
+      - TZ=Asia/India
+      - UMASK_SET=022
+      - WEBUI_PORT=8080
+    volumes:
+      - /opt/appdata/qbittorrent:/config
+      - /mnt/disk2/downloads:/downloads
+    ports:
+      - 6881:6881
+      - 6881:6881/udp
+      - 27023:8080
+    restart: always
   smokeping:
     image: linuxserver/smokeping
     container_name: smokeping
