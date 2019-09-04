@@ -113,7 +113,7 @@ services:
       - 27024:8384
       - 22000:22000
       - 21027:21027/udp
-    restart: unless-stopped
+    restart: always
   smokeping:
     image: linuxserver/smokeping
     container_name: smokeping
@@ -147,8 +147,7 @@ services:
       - 443:443
     volumes:
       - /opt/appdata/letsencrypt:/config
-    restart:
-      always
+    restart:  always
     environment:
       - PUID=${PUID}
       - PGID=${PGID}
@@ -170,8 +169,7 @@ services:
       - PUID=${PUID}
       - PGID=${PGID}
       - CONTEXT_PATH=sonic
-    restart:
-      always
+    restart:  always
   ghost:
     image: ghost
     container_name: ghost
@@ -202,5 +200,4 @@ services:
       - 3001:3000
     volumes:
       - /opt/appdata/grafana:/var/lib/grafana
-    restart:
-      always
+    restart:  always
