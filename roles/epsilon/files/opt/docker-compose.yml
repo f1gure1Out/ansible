@@ -13,7 +13,7 @@ services:
       - PLEX_CLAIM="nope"
       - PUID=${PUID}
       - PGID=${PGID}
-  plexpy:
+  tautulli:
     image: linuxserver/tautulli
     container_name: tautulli
     depends_on:
@@ -29,7 +29,7 @@ services:
     environment:
       - PUID=${PUID}
       - PGID=${PGID}
-  plexrequests:
+  ombi:
     image: linuxserver/ombi
     container_name: ombi
     depends_on:
