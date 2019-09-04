@@ -30,12 +30,12 @@ services:
       - PUID=${PUID}
       - PGID=${PGID}
   plexrequests:
-    image: linuxserver/plexrequests
-    container_name: plexrequests
+    image: linuxserver/ombi
+    container_name: ombi
     depends_on:
       - plex
     volumes:
-      - /opt/appdata/plexrequests:/config
+      - /opt/appdata/ombi:/config
       - /mnt/storage/tv:/tv
     ports:
       - 27026:3000
