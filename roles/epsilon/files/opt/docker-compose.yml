@@ -38,7 +38,7 @@ services:
       - /opt/appdata/ombi:/config
       - /mnt/storage_damaged/tv:/tv
     ports:
-      - 27026:3000
+      - 27026:3579
     links:
       - plex
     restart: always
