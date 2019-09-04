@@ -101,6 +101,21 @@ services:
       - 6881:6881/udp
       - 27023:8080
     restart: always
+  syncthing:
+    image: linuxserver/syncthing
+    container_name: syncthing
+    environment:
+      - PUID=${PUID}
+      - PGID=${PGID}
+    volumes:
+      - /opt/appdata/syncthing:/config
+      - /mnt/disk2/data1:/data1
+      - /mnt/disk2/data2:/data2
+    ports:
+      - 27024:8384
+      - 22000:22000
+      - 21027:21027/udp
+    restart: unless-stopped
   smokeping:
     image: linuxserver/smokeping
     container_name: smokeping
