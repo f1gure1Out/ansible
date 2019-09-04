@@ -45,24 +45,9 @@ services:
     environment:
       - PUID=${PUID}
       - PGID=${PGID}
-  nzbget:
-    image: linuxserver/nzbget
-    container_name: nzbget
-    volumes:
-      - /opt/appdata/nzbget/config:/config
-      - /opt/downloads:/downloads
-      - /mnt/disk1/downloads/complete:/downloads/complete
-    ports:
-      - 27020:6789
-    restart: always
-    environment:
-      - PUID=${PUID}
-      - PGID=${PGID}
   sonarr:
     image: linuxserver/sonarr
     container_name: sonarr
-    depends_on:
-      - nzbget
     volumes:
       - /opt/appdata/sonarr:/config
       - /mnt/storage/tv:/tv
@@ -70,8 +55,6 @@ services:
       - /mnt/storage/downloads/complete/tv_import:/tv_import
     ports:
       - 27021:8989
-    links:
-      - nzbget
     restart: always
     environment:
       - PUID=${PUID}
@@ -79,26 +62,13 @@ services:
   couchpotato:
     image: linuxserver/couchpotato
     container_name: couchpotato
-    depends_on:
-      - nzbget
     volumes:
       - /opt/appdata/couchpotato:/config
       - /mnt/disk1/downloads/complete/movies:/downloads
       - /mnt/storage/movies:/movies
     ports:
       - 27022:5050
-    links:
-      - nzbget
     restart: always
-    environment:
-      - PUID=${PUID}
-      - PGID=${PGID}
-  unifi:
-    image: linuxserver/unifi
-    container_name: unifi
-    network_mode: host
-    volumes:
-      - /opt/appdata/unifi:/config
     environment:
       - PUID=${PUID}
       - PGID=${PGID}
@@ -114,19 +84,6 @@ services:
     environment:
       - PUID=${PUID}
       - PGID=${PGID}
-  sync:
-    image: linuxserver/resilio-sync
-    container_name: sync
-    volumes:
-      - /opt/appdata/sync:/config
-      - /mnt/storage:/sync
-    ports:
-      - 27028:8888
-      - 55555:55555
-    environment:
-      - PUID=${PUID}
-      - PGID=${PGID}
-    restart: always
   smokeping:
     image: linuxserver/smokeping
     container_name: smokeping
@@ -135,17 +92,6 @@ services:
       - /opt/appdata/smokeping/data:/data
     ports:
       - 27025:80
-    environment:
-      - PUID=${PUID}
-      - PGID=${PGID}
-    restart: always
-  quassel:
-    image: linuxserver/quassel-core
-    container_name: quassel
-    volumes:
-      - /opt/appdata/quassel:/config
-    ports:
-      - 27023:4242
     environment:
       - PUID=${PUID}
       - PGID=${PGID}
