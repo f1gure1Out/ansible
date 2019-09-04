@@ -128,13 +128,13 @@ services:
       - ONLY_SUBDOMAINS=true
       - DHLEVEL=4096
       - TZ=Europe/London
-  libresonic:
-    image: linuxserver/libresonic
-    container_name: libresonic
+  airsonic:
+    image: linuxserver/airsonic
+    container_name: airsonic
     ports:
       - 4040:4040
     volumes:
-      - /opt/appdata/libresonic:/config
+      - /opt/appdata/airsonic:/config
       - /mnt/storage/music/flac:/music/flac
     environment:
       - PUID=${PUID}
